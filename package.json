@@ -13,7 +13,7 @@
     "allure"
   ],
   "scripts": {
-    "test": "jasmine-node test/unit"
+    "test": "./test.sh"
   },
   "peerDependencies": {
     "karma": ">=0.9"
