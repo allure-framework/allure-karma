@@ -1,24 +1,28 @@
 {
-    "name": "karma-allure-reporter",
-    "version": "1.0.0",
-    "description": "Allure Framework reporter to Karma",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git@github.yandex-team.ru:just-boris/karma-allure-report.git"
-    },
-    "keywords": ["karma-plugin", "karma-reporter", "allure"],
-    "scripts": {
-        "test": "jasmine-node test/unit"
-    },
-    "peerDependencies": {
-        "karma": ">=0.9"
-    },
-    "dependencies": {
-        "js2xmlparser": "~0.1.2",
-        "underscore": "~1.5.2"
-    },
-    "devDependencies": {
-        "mockery": "~1.4.0"
-    }
+  "name": "karma-allure-reporter",
+  "version": "1.0.1",
+  "description": "Allure Framework reporter to Karma",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.yandex-team.ru:just-boris/karma-allure-report.git"
+  },
+  "keywords": [
+    "karma-plugin",
+    "karma-reporter",
+    "allure"
+  ],
+  "scripts": {
+    "test": "jasmine-node test/unit"
+  },
+  "peerDependencies": {
+    "karma": ">=0.9"
+  },
+  "dependencies": {
+    "js2xmlparser": "~0.1.2",
+    "underscore": "~1.5.2"
+  },
+  "devDependencies": {
+    "mockery": "~1.4.0"
+  }
 }
