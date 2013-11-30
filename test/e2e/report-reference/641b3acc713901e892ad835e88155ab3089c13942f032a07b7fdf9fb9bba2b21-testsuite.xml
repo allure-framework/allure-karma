@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="" stop="">
+	<title>Arithmetic</title>
+	<test-cases start="" stop="" status="passed" severity="blocker">
+		<title>base addiction test</title>
+	</test-cases>
+	<test-cases start="" stop="" status="passed" severity="critical">
+		<title>base multiplication test</title>
+	</test-cases>
+	<test-cases start="" stop="" status="failed">
+		<title>division test</title>
+		<failure>
+			<message>Expected true to be false.</message>
+			<stack-trace></stack-trace>
+		</failure>
+		<description>This test has wrong assertions and will be failed</description>
+	</test-cases>
+	<test-cases start="" stop="" status="passed" severity="normal">
+		<title>rounding test</title>
+		<description>It&apos;s a round to nearest: result is the integer that is closest to value</description>
+	</test-cases>
+</ns2:test-suite>
