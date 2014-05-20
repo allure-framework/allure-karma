@@ -53,18 +53,18 @@ function writeAllureFields(testcase, report) {
                 status: 'passed'
             },
             title: step.name,
-            steps: step.steps.map(mapStep)
+            steps: {
+                step: step.steps.map(mapStep)
+            }
         }
     }
     var allure = testcase.allure;
     if(allure.description) {
         report.description = allure.description;
     }
-    if(allure.severity) {
-        report['@'].severity = allure.severity;
-    }
+    report['@'].severity = allure.severity || 'normal';
     if(allure.steps) {
-        report.steps = allure.steps.map(mapStep);
+        report.steps = {step: allure.steps.map(mapStep)};
     }
 }
 
@@ -108,7 +108,9 @@ function AllureReporter(baseReporterDecorator, config,  emitter, logger, helper)
                 data = {
                     '@': {},
                     title: key,
-                    'test-cases': testcases
+                    'test-cases': {
+                        'test-case': testcases
+                    }
                 };
 
             value.forEach(function (testcase) {

@@ -1,3 +1,4 @@
+#!/bin/sh
 cd "$(dirname "$0")"
 karma start --single-run
 sed -i 's/[0-9]\{13\}//g' report-target/*

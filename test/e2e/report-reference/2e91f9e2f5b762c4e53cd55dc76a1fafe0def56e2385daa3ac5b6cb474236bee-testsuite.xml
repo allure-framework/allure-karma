@@ -1,37 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="" stop="">
 	<title>Square equation</title>
-	<test-cases start="" stop="" status="passed">
-		<title>with one root</title>
-		<steps start="" stop="" status="passed">
-			<title>get the discriminant</title>
-		</steps>
-	</test-cases>
-	<test-cases start="" stop="" status="passed">
-		<title>with two roots</title>
-		<steps start="" stop="" status="passed">
-			<title>getRoots</title>
-			<steps start="" stop="" status="passed">
-				<title>get the discriminant</title>
+	<test-cases>
+		<test-case start="" stop="" status="passed" severity="normal">
+			<title>with one root</title>
+			<steps>
+				<step start="" stop="" status="passed">
+					<title>get the discriminant</title>
+					<steps>
+					</steps>
+				</step>
 			</steps>
-			<steps start="" stop="" status="passed">
-				<title>getRoot</title>
+		</test-case>
+		<test-case start="" stop="" status="passed" severity="normal">
+			<title>with two roots</title>
+			<steps>
+				<step start="" stop="" status="passed">
+					<title>getRoots</title>
+					<steps>
+						<step start="" stop="" status="passed">
+							<title>get the discriminant</title>
+							<steps>
+							</steps>
+						</step>
+						<step start="" stop="" status="passed">
+							<title>getRoot</title>
+							<steps>
+							</steps>
+						</step>
+						<step start="" stop="" status="passed">
+							<title>getRoot</title>
+							<steps>
+							</steps>
+						</step>
+					</steps>
+				</step>
 			</steps>
-			<steps start="" stop="" status="passed">
-				<title>getRoot</title>
+		</test-case>
+		<test-case start="" stop="" status="passed" severity="normal">
+			<title>without roots</title>
+			<steps>
+				<step start="" stop="" status="passed">
+					<title>get the discriminant</title>
+					<steps>
+					</steps>
+				</step>
+				<step start="" stop="" status="passed">
+					<title>getRoot</title>
+					<steps>
+					</steps>
+				</step>
+				<step start="" stop="" status="passed">
+					<title>getRoot</title>
+					<steps>
+					</steps>
+				</step>
 			</steps>
-		</steps>
-	</test-cases>
-	<test-cases start="" stop="" status="passed">
-		<title>without roots</title>
-		<steps start="" stop="" status="passed">
-			<title>get the discriminant</title>
-		</steps>
-		<steps start="" stop="" status="passed">
-			<title>getRoot</title>
-		</steps>
-		<steps start="" stop="" status="passed">
-			<title>getRoot</title>
-		</steps>
+		</test-case>
 	</test-cases>
 </ns2:test-suite>
