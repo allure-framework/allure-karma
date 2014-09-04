@@ -79,5 +79,5 @@ For more information about Karma see the [Karma homepage].
 
 
 [allure core]: https://github.com/allure-framework/allure
-[example project]: https://github.com/allure-framework/allure-karma-example
+[example project]: https://github.com/allure-examples/allure-karma-example
 [docs]: https://github.com/allure-framework/allure/blob/master/docs/dictionary.md
