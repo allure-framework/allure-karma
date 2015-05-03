@@ -12,6 +12,8 @@ describe('Math', function() {
 
     it('Math.noMethod() test', function() {
         allure.severity(allure.severity.MINOR);
+        allure.label('feature', 'try');
+        allure.label('story', 'little story');
         allure.description('This test will be broken');
         Math.noMethod(2);
     });

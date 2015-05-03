@@ -4,11 +4,12 @@ describe('AllureReporter', function() {
         Allure, allure,
         Reporter;
 
-    function TestResult(suite, description, error, success) {
+    function TestResult(suite, description, error, success, skipped) {
         this.suite = [suite];
         this.description = description;
         this.log = [error];
         this.success = success;
+        this.skipped = skipped;
     }
 
     beforeEach(function() {

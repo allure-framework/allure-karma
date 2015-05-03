@@ -14,7 +14,7 @@ function AllureReporter(baseReporterDecorator, config) {
     this.suites = {};
     baseReporterDecorator(this);
 
-    this.onRunComplete = function () {
+    this.onRunComplete = function() {
         Object.keys(this.suites).forEach(function(suite) {
             var results = this.suites[suite],
                 stopTime = results.reduce(function(stop, result) {
@@ -24,17 +24,19 @@ function AllureReporter(baseReporterDecorator, config) {
         }, this);
     };
 
-    this.specSuccess = this.specFailure = function (browser, result) {
+    this.specSkipped = this.specSuccess = this.specFailure = function(browser, result) {
         this.addTimeToResult(result);
         var suite = this.getSuite(browser, result);
-        this.allure.startCase(suite, result.description, result.start);
-        var err = this.getTestcaseError(result);
-        this.allure.endCase(suite, result.description, this.getTestcaseStatus(result, err), err, result.stop);
-    };
-    this.specSkipped = function(browser, result) {
-        this.addTimeToResult(result);
-        var suite = this.getSuite(browser, result);
-        this.allure.pendingCase(suite, result.description, result.stop);
+        if(result.skipped) {
+            this.allure.pendingCase(suite, result.description, result.stop);
+        } else {
+            this.allure.startCase(suite, result.description, result.start);
+            if(result.allure) {
+                this.addAllureExtraInfo(browser, suite, result.allure);
+            }
+            var err = this.getTestcaseError(result);
+            this.allure.endCase(suite, result.description, this.getTestcaseStatus(result, err), err, result.stop);
+        }
     };
 }
 
@@ -44,8 +46,26 @@ AllureReporter.prototype.addTimeToResult = function(result) {
     return result;
 };
 
+AllureReporter.prototype.addAllureExtraInfo = function(browser, suite, report) {
+    function publishSubsteps(step) {
+        this.allure.startStep(suite, step.name, step.start);
+        step.steps.forEach(publishSubsteps, this);
+        this.allure.endStep(suite, step.name, step.status, step.stop)
+    }
+
+    var testcase = this.allure.getSuite(suite).currentTest;
+    if(report.description) {
+        testcase.setDesctiption(report.description);
+    }
+    report.labels.forEach(function(label) {
+        testcase.addLabel(label.key, label.value);
+    });
+    testcase.addLabel('host', browser);
+    report.steps.forEach(publishSubsteps, this)
+};
+
 AllureReporter.prototype.getSuite = function(browser, result) {
-    var suiteName = '['+browser+ '] '+result.suite.join(' '),
+    var suiteName = '[' + browser + '] ' + result.suite.join(' '),
         suite = this.suites[suiteName];
     if(!suite) {
         suite = [];
