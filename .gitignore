@@ -1,4 +1,5 @@
 node_modules
-test/e2e/report-target
+test/e2e/out
+/allure-report
 .idea
 *.iml

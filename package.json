@@ -13,16 +13,22 @@
     "allure"
   ],
   "scripts": {
-    "test": "./test.sh"
-  },
-  "peerDependencies": {
-    "karma": ">=0.9"
+    "test": "npm run unit && npm run e2e-test",
+    "unit": "jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
+    "e2e-clean": "rm -rf test/e2e/out",
+    "e2e-test": "npm run e2e-clean && node test/e2e/test-runner.js && allure generate -v 1.4.11 test/e2e/out"
   },
   "dependencies": {
-    "js2xmlparser": "~0.1.2",
-    "underscore": "~1.5.2"
+    "allure-js-commons": "git+https://github.com/allure-framework/allure-js-commons.git"
   },
   "devDependencies": {
+    "jasmine": "^2.3.1",
+    "jasmine-core": "^2.3.0",
+    "karma": "^0.12",
+    "karma-cli": "0.0.4",
+    "karma-firefox-launcher": "^0.1.4",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4",
     "mockery": "~1.4.0"
   }
 }
