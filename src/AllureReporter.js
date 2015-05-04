@@ -27,16 +27,12 @@ function AllureReporter(baseReporterDecorator, config) {
     this.specSkipped = this.specSuccess = this.specFailure = function(browser, result) {
         this.addTimeToResult(result);
         var suite = this.getSuite(browser, result);
-        if(result.skipped) {
-            this.allure.pendingCase(suite, result.description, result.stop);
-        } else {
-            this.allure.startCase(suite, result.description, result.start);
-            if(result.allure) {
-                this.addAllureExtraInfo(browser, suite, result.allure);
-            }
-            var err = this.getTestcaseError(result);
-            this.allure.endCase(suite, result.description, this.getTestcaseStatus(result, err), err, result.stop);
+        this.allure.startCase(suite, result.description, result.start);
+        if(result.allure) {
+            this.addAllureExtraInfo(browser, suite, result.allure);
         }
+        var err = this.getTestcaseError(result);
+        this.allure.endCase(suite, result.description, this.getTestcaseStatus(result, err), err, result.stop);
     };
 }
 
@@ -77,6 +73,12 @@ AllureReporter.prototype.getSuite = function(browser, result) {
 };
 
 AllureReporter.prototype.getTestcaseError = function(result) {
+    if(result.skipped) {
+        return {
+            message: 'This test was ignored',
+            stack: ''
+        };
+    }
     var log = result.log[0];
     if(log) {
         log = log.split('\n');

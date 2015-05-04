@@ -78,7 +78,8 @@ describe('AllureReporter', function() {
 
         it("should report skipped tests", function () {
             reporter.specSkipped('test', new TestResult('future', 'ignored test', null, false, true));
-            expect(allure.pendingCase).toHaveBeenCalledWith('[test] future', 'ignored test', jasmine.any(Number));
+            expect(allure.startCase).toHaveBeenCalledWith('[test] future', 'ignored test', jasmine.any(Number));
+            expect(allure.endCase).toHaveBeenCalledWith('[test] future', 'ignored test', 'pending', jasmine.any(Object), jasmine.any(Number));
         });
 
         it("should finish suites on testrun finish", function () {

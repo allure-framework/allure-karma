@@ -22,7 +22,7 @@
             if(!this.severity.hasOwnProperty(severity.toUpperCase())) {
                 console.warn('Unknown severity: ' + severity);
             }
-            this.label('severity', severity.toUpperCase());
+            this.label('severity', severity);
         };
         this.severity.BLOCKER = 'blocker';
         this.severity.CRITICAL = 'critical';
