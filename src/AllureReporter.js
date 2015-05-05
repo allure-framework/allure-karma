@@ -84,8 +84,8 @@ AllureReporter.prototype.getTestcaseError = function(result) {
         log = log.split('\n');
         return {
             message: log[0],
-            stack: log[1]
-        }
+            stack: log.slice(1).join('\n')
+        };
     }
 };
 
