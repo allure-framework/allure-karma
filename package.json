@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.yandex-team.ru:just-boris/karma-allure-report.git"
+    "url": "git@github.yandex-team.ru:just-boris/karma-allure-reporter.git"
   },
   "keywords": [
     "karma-plugin",
