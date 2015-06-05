@@ -15,7 +15,7 @@ describe('AllureReporter', function() {
     beforeEach(function() {
         mockery.enable({ useCleanCache: true });
         mockery.registerMock('allure-js-commons', Allure = jasmine.createSpy('Allure'));
-        allure = jasmine.createSpyObj('allure', ['startSuite', 'endSuite', 'startCase', 'endCase', 'pendingCase']);
+        allure = jasmine.createSpyObj('allure', ['startSuite', 'endSuite', 'startCase', 'endCase', 'pendingCase', 'setOptions']);
         Allure.and.returnValue(allure);
         mockery.registerAllowable('../../src/AllureReporter.js');
         mockery.registerAllowable('path');
@@ -39,13 +39,13 @@ describe('AllureReporter', function() {
 
     it('should use default as out dir by default', function() {
         var reporter = new Reporter(baseReporterDecorator, config);
-        expect(Allure).toHaveBeenCalledWith({targetDir: undefined});
+        expect(allure.setOptions).toHaveBeenCalledWith({targetDir: undefined});
     });
 
     it('should use allure report dir when it is set', function() {
         config.allureReport = {reportDir : "reports"};
         var reporter = new Reporter(baseReporterDecorator, config);
-        expect(Allure).toHaveBeenCalledWith({targetDir: '/reports'});
+        expect(allure.setOptions).toHaveBeenCalledWith({targetDir: '/reports'});
     });
 
     describe("reporting", function () {
