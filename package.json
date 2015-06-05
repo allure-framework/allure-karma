@@ -19,7 +19,7 @@
     "e2e-test": "npm run e2e-clean && node test/e2e/test-runner.js && allure generate -v 1.4.11 test/e2e/out"
   },
   "dependencies": {
-    "allure-js-commons": "git+https://github.com/allure-framework/allure-js-commons.git#v1.0.1"
+    "allure-js-commons": "1.0.2"
   },
   "devDependencies": {
     "jasmine": "^2.3.1",

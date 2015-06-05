@@ -8,7 +8,8 @@ function AllureReporter(baseReporterDecorator, config) {
     config.allureReport = config.allureReport || {};
 
     var outDir = config.allureReport.reportDir ? path.resolve(config.basePath, config.allureReport.reportDir) : undefined;
-    this.allure = new Allure({
+    this.allure = new Allure();
+    this.allure.setOptions({
         targetDir: outDir
     });
     this.suites = {};
@@ -49,7 +50,7 @@ AllureReporter.prototype.addAllureExtraInfo = function(browser, suite, report) {
         this.allure.endStep(suite, step.name, step.status, step.stop)
     }
 
-    var testcase = this.allure.getSuite(suite).currentTest;
+    var testcase = this.allure.getCurrentSuite(suite).currentTest;
     if(report.description) {
         testcase.setDesctiption(report.description);
     }
