@@ -27,6 +27,7 @@ function AllureReporter(baseReporterDecorator, config) {
 
     this.specSkipped = this.specSuccess = this.specFailure = function(browser, result) {
         this.addTimeToResult(result);
+        this.getSuite(browser, result)
         this.allure.startCase(result.description, result.start);
         if(result.allure) {
             this.addAllureExtraInfo(browser, result.allure);
@@ -42,7 +43,7 @@ AllureReporter.prototype.addTimeToResult = function(result) {
     return result;
 };
 
-AllureReporter.prototype.addAllureExtraInfo = function(browser, suite, report) {
+AllureReporter.prototype.addAllureExtraInfo = function(browser, report) {
     function publishSubsteps(step) {
         this.allure.startStep(step.name, step.start);
         step.steps.forEach(publishSubsteps, this);
