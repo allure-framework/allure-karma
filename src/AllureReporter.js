@@ -21,19 +21,18 @@ function AllureReporter(baseReporterDecorator, config) {
                 stopTime = results.reduce(function(stop, result) {
                     return Math.max(stop, result.stop);
                 }, Number.NEGATIVE_INFINITY);
-            this.allure.endSuite(suite, stopTime);
+            this.allure.endSuite(stopTime);
         }, this);
     };
 
     this.specSkipped = this.specSuccess = this.specFailure = function(browser, result) {
         this.addTimeToResult(result);
-        var suite = this.getSuite(browser, result);
-        this.allure.startCase(suite, result.description, result.start);
+        this.allure.startCase(result.description, result.start);
         if(result.allure) {
-            this.addAllureExtraInfo(browser, suite, result.allure);
+            this.addAllureExtraInfo(browser, result.allure);
         }
         var err = this.getTestcaseError(result);
-        this.allure.endCase(suite, result.description, this.getTestcaseStatus(result, err), err, result.stop);
+        this.allure.endCase(this.getTestcaseStatus(result, err), err, result.stop);
     };
 }
 
@@ -45,12 +44,12 @@ AllureReporter.prototype.addTimeToResult = function(result) {
 
 AllureReporter.prototype.addAllureExtraInfo = function(browser, suite, report) {
     function publishSubsteps(step) {
-        this.allure.startStep(suite, step.name, step.start);
+        this.allure.startStep(step.name, step.start);
         step.steps.forEach(publishSubsteps, this);
-        this.allure.endStep(suite, step.name, step.status, step.stop)
+        this.allure.endStep(step.status, step.stop)
     }
 
-    var testcase = this.allure.getCurrentSuite(suite).currentTest;
+    var testcase = this.allure.getCurrentSuite().currentTest;
     if(report.description) {
         testcase.setDesctiption(report.description);
     }
