@@ -1,6 +1,6 @@
 {
   "name": "karma-allure-reporter",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Allure Framework reporter to Karma",
   "main": "index.js",
   "repository": {
