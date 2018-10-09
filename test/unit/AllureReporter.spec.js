@@ -91,7 +91,25 @@ describe('AllureReporter', function() {
             expect(allure.endSuite).toHaveBeenCalledWith(7);
             expect(allure.endSuite).toHaveBeenCalledWith(57);
         });
-    });
 
+        it("should add browser to suitName as default option", function () {
+            reporter.specSuccess('browser', new TestResult('a suite', 'first', null, true, false));
+            expect(allure.startSuite).toHaveBeenCalledWith('[browser] a suite', jasmine.any(Number));
+        });
+
+        it("should add browser to suitName", function () {
+            config.allureReport.useBrowserName = true;
+            reporter = new Reporter(baseReporterDecorator, config);
+            reporter.specSuccess('browser', new TestResult('a suite', 'first', null, true, false));
+            expect(allure.startSuite).toHaveBeenCalledWith('[browser] a suite', jasmine.any(Number));
+        });
+
+        it("should not add browser to suitName", function () {
+            config.allureReport.useBrowserName = false;
+            reporter = new Reporter(baseReporterDecorator, config);
+            reporter.specSuccess('browser', new TestResult('a suite', 'first', null, true, false));
+            expect(allure.startSuite).toHaveBeenCalledWith('a suite', jasmine.any(Number));
+        });
+    });
 
 });
