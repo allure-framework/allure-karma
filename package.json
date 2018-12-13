@@ -15,20 +15,19 @@
   "scripts": {
     "test": "npm run unit && npm run e2e-test",
     "unit": "jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
-    "e2e-clean": "rm -rf test/e2e/out",
-    "e2e-test": "npm run e2e-clean && node test/e2e/test-runner.js && allure generate -v 1.4.11 test/e2e/out"
+    "e2e-test": "node test/e2e/test-runner.js && allure generate -c -o test/e2e/out"
   },
   "dependencies": {
     "allure-js-commons": "1.0.2"
   },
   "devDependencies": {
-    "jasmine": "^2.3.1",
+    "jasmine": "^3.3.1",
     "jasmine-core": "^2.3.0",
-    "karma": "^0.12",
-    "karma-cli": "0.0.4",
-    "karma-firefox-launcher": "^0.1.4",
-    "karma-jasmine": "^0.3.5",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "mockery": "~1.4.0"
+    "karma": "^3.1.3",
+    "karma-cli": "^2.0.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^2.0.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "mockery": "^2.1.0"
   }
 }
