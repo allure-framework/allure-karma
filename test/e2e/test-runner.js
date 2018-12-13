@@ -22,6 +22,4 @@ karma.start({
     allureReport: {
         reportDir: 'out'
     }
-}, function (done) {
-
 });
