@@ -12,6 +12,9 @@
     "karma-reporter",
     "allure"
   ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "scripts": {
     "test": "npm run unit && npm run e2e-test",
     "unit": "jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
