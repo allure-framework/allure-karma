@@ -1,6 +1,6 @@
-var karma = require('karma').server;
+var Server = require('karma').Server;
 
-karma.start({
+var karmaConfig = {
     basePath: __dirname,
     frameworks: ['jasmine'],
     files: [
@@ -22,4 +22,14 @@ karma.start({
     allureReport: {
         reportDir: 'out'
     }
+};
+
+var server = new Server(karmaConfig, function(exitCode) {
+    process.exit(1);
+});
+
+server.start();
+
+server.on('run_complete', function (browsers, results) {
+    process.exit(0);
 });
