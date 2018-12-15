@@ -57,7 +57,7 @@ AllureReporter.prototype.addAllureExtraInfo = function(browser, report) {
 
     var testcase = this.allure.getCurrentSuite().currentTest;
     if(report.description) {
-        testcase.setDesctiption(report.description);
+        testcase.setDescription(report.description);
     }
     report.labels.forEach(function(label) {
         testcase.addLabel(label.key, label.value);
