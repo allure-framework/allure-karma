@@ -24,12 +24,14 @@ var karmaConfig = {
     }
 };
 
+var runCompleted = false;
+
 var server = new Server(karmaConfig, function(exitCode) {
-    process.exit(1);
+    runCompleted ? process.exit(0) : process.exit(1);
 });
 
 server.start();
 
 server.on('run_complete', function (browsers, results) {
-    process.exit(0);
+    runCompleted = true;
 });
