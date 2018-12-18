@@ -21,11 +21,13 @@ describe('AllureReporter', function() {
         mockery.registerAllowable('path');
         Reporter = require('../../src/AllureReporter.js');
     });
+
     afterEach(function() {
         mockery.deregisterAll();
         mockery.resetCache();
         mockery.disable();
     });
+    
     beforeEach(function() {
         baseReporterDecorator = jasmine.createSpy('decorator');
         config = {
@@ -92,6 +94,4 @@ describe('AllureReporter', function() {
             expect(allure.endSuite).toHaveBeenCalledWith(57);
         });
     });
-
-
 });

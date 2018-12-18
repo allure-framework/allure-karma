@@ -52,17 +52,17 @@ AllureReporter.prototype.addAllureExtraInfo = function(browser, report) {
 
     var testcase = this.allure.getCurrentSuite().currentTest;
     if(report.description) {
-        testcase.setDesctiption(report.description);
+        testcase.setDescription(report.description);
     }
     report.labels.forEach(function(label) {
         testcase.addLabel(label.key, label.value);
     });
-    testcase.addLabel('host', browser);
+    testcase.addLabel('host', browser.name);
     report.steps.forEach(publishSubsteps, this)
 };
 
 AllureReporter.prototype.getSuite = function(browser, result) {
-    var suiteName = '[' + browser + '] ' + result.suite.join(' '),
+    var suiteName = '[' + browser.name + '] ' + result.suite.join(' '),
         suite = this.suites[suiteName];
     if(!suite) {
         suite = [];
