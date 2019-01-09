@@ -4,17 +4,8 @@
 
 ## Installation
 
-Install karma-allure-reporter into your project as devDependency
-```json
-{
-  "devDependencies": {
-    "karma": "~0.10",
-    "karma-allure-reporter": "~1.0.0"
-  }
-}
-```
+You can install `karma-allure-reporter` into your project as devDependency with:
 
-You can simple do it by:
 ```bash
 npm install karma-allure-reporter --save-dev
 ```
@@ -22,8 +13,6 @@ npm install karma-allure-reporter --save-dev
 ## Configuration
 
 Add allure into `reporters` section.
-Allure-reporter has a single config, it's a `reportDir` &mdash; result files location relatively to base dir. By default,
-files save right in the base dir.
 
 ```js
 // karma.conf.js
@@ -33,7 +22,8 @@ module.exports = function(config) {
 
     // the default configuration
     allureReport: {
-      reportDir: '',
+      reportDir: '', // By default files will be save in the base dir
+      useBrowserName: true // add browser name to report and classes names
     }
   });
 };

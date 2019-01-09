@@ -7,7 +7,14 @@ function AllureReporter(baseReporterDecorator, config) {
     config.files.unshift(this.createClientScriptConfig(path.resolve(__dirname, '../client/allure.js')));
     config.allureReport = config.allureReport || {};
 
-    var outDir = config.allureReport.reportDir ? path.resolve(config.basePath, config.allureReport.reportDir) : undefined;
+    var outDir = config.allureReport.reportDir
+        ? path.resolve(config.basePath, config.allureReport.reportDir)
+        : undefined;
+
+    var useBrowserName = (config.allureReport.useBrowserName != null)
+        ? config.allureReport.useBrowserName
+        : true;
+
     this.allure = new Allure();
     this.allure.setOptions({
         targetDir: outDir
@@ -27,7 +34,7 @@ function AllureReporter(baseReporterDecorator, config) {
 
     this.specSkipped = this.specSuccess = this.specFailure = function(browser, result) {
         this.addTimeToResult(result);
-        this.getSuite(browser, result)
+        this.getSuite(browser, result, useBrowserName);
         this.allure.startCase(result.description, result.start);
         if(result.allure) {
             this.addAllureExtraInfo(browser, result.allure);
@@ -61,9 +68,13 @@ AllureReporter.prototype.addAllureExtraInfo = function(browser, report) {
     report.steps.forEach(publishSubsteps, this)
 };
 
-AllureReporter.prototype.getSuite = function(browser, result) {
-    var suiteName = '[' + browser.name + '] ' + result.suite.join(' '),
-        suite = this.suites[suiteName];
+AllureReporter.prototype.getSuite = function(browser, result, useBrowserName) {
+    var browserName = '[' + browser.name + ']';
+    var suiteName = (useBrowserName)
+        ? browserName + ' ' + result.suite.join(' ')
+        : result.suite.join(' ');
+    var suite = this.suites[suiteName];
+
     if(!suite) {
         suite = [];
         this.suites[suiteName] = suite;
