@@ -29,6 +29,7 @@ function AllureReporter(baseReporterDecorator, config) {
                     return Math.max(stop, result.stop);
                 }, Number.NEGATIVE_INFINITY);
             this.allure.endSuite(stopTime);
+            delete this.suites[suite];
         }, this);
     };
 
