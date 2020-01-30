@@ -8,7 +8,7 @@ var karmaConfig = {
     ],
     port: 9876,
     colors: true,
-    browsers: ['PhantomJS', 'Firefox'],
+    browsers: ['PhantomJS', 'FirefoxHeadless'],
     captureTimeout: 60000,
     singleRun: true,
 
@@ -19,6 +19,12 @@ var karmaConfig = {
         'karma-phantomjs-launcher',
         'karma-firefox-launcher'
     ],
+    customLaunchers: {
+        FirefoxHeadless: {
+          base: 'Firefox',
+          flags: [ '-headless' ],
+        },
+      },
     allureReport: {
         reportDir: 'out'
     }
